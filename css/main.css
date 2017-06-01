@@ -1,0 +1,35 @@
+.header {
+    margin-top: 15px;
+}
+
+.sclass {
+    height: 40px;
+    background-color: #90a4ae;
+    text-align: center;
+    line-height: 40px;
+    border-radius: 5px;
+    color: white;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.sclass:first-child {
+    margin-bottom: 15px;
+}
+
+body {
+    background-color: #fff8e1;
+}
+
+.sclass.selected {
+    background-color: #4db6ac;
+}
+
+input {
+    margin-top: 15px;
+    width: 100%;
+}
+
+input[type=text]:focus {
+    border-color: #4db6ac;
+}
