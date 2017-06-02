@@ -12,6 +12,7 @@ $(document).ready(function () {
     }];
     var filter = "";
     var gradeFilter = getCookie("grade") || 2;
+    $(".sclass[data-grade='" + gradeFilter + "']");
     $(".sclass").click(function () {
         gradeFilter = $(this).data("grade");
         $(".selected.sclass").removeClass("selected");
