@@ -33,3 +33,12 @@ input {
 input[type=text]:focus {
     border-color: #4db6ac;
 }
+
+.book {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.book img {
+    width: 100%;
+}
