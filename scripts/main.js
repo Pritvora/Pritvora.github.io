@@ -21,16 +21,7 @@ $(document).ready(function () {
         filter = $(this).val();
         render();
     });
-    $(".book").click(function () {
-        if ($(this).hasClass("done")) {
-            $.cookie($(this).data("name"), null);
-        } else {
-            $.cookie($(this).data("name"), 1, {
-                expires: 365
-            });
-        }
-        render();
-    });
+
 
     function render() {
         $(".book").remove();
@@ -44,6 +35,16 @@ $(document).ready(function () {
                 $(".content").append($('<div class="book col-xs-3" data-name="' + filteredBooks[i].name + '"><img src="imgs/' + filteredBooks[i].pik + '.jpg"></div>'));
             }
         }
+        $(".book").click(function () {
+            if ($(this).hasClass("done")) {
+                $.cookie($(this).data("name"), null);
+            } else {
+                $.cookie($(this).data("name"), 1, {
+                    expires: 365
+                });
+            }
+            render();
+        });
     }
 
 });
