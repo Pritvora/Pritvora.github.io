@@ -3,6 +3,10 @@ $(document).ready(function () {
         name: "aaaaaaaaaaaaa",
         pik: "golden",
         grade: 2
+    }, {
+        name: "dfa",
+        pik: "golden",
+        grade: 3
     }];
     var filter = "";
     var gradeFilter = $.cookie("grade") || 2;
@@ -17,7 +21,7 @@ $(document).ready(function () {
         });
         render();
     });
-    $("input").on("change", function () {
+    $("input").on("keyup", function () {
         filter = $(this).val();
         render();
     });
@@ -29,15 +33,20 @@ $(document).ready(function () {
             return b.grade == gradeFilter && b.name.indexOf(filter) != -1;
         });
         for (var i = 0; i < filteredBooks.length; i++) {
+
             if ($.cookie(filteredBooks[i].name)) {
+
                 $(".content").append($('<div class="book col-xs-3 done" data-name="' + filteredBooks[i].name + '"><img src="imgs/' + filteredBooks[i].pik + '.jpg"><div class="check"></div></div>'));
             } else {
                 $(".content").append($('<div class="book col-xs-3" data-name="' + filteredBooks[i].name + '"><img src="imgs/' + filteredBooks[i].pik + '.jpg"></div>'));
             }
         }
         $(".book").click(function () {
+
             if ($(this).hasClass("done")) {
-                $.cookie($(this).data("name"), null);
+                $.cookie($(this).data("name"), null, {
+                    expires: -1
+                });
             } else {
                 $.cookie($(this).data("name"), 1, {
                     expires: 365
