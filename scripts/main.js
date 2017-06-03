@@ -6,12 +6,13 @@ function getCookie(name) {
 }
 $(document).ready(function () {
     var books = [{
-        name: "",
-        pik: "",
+        name: "aaaaaaaaaaaaa",
+        pik: "golden",
         grade: 2
     }];
     var filter = "";
     var gradeFilter = getCookie("grade") || 2;
+    render();
     $(".sclass[data-grade='" + gradeFilter + "']").addClass("selected");
     $(".sclass").click(function () {
         gradeFilter = $(this).data("grade");
@@ -19,5 +20,20 @@ $(document).ready(function () {
         $(this).addClass("selected");
         var date = new Date(new Date().getTime() + 60 * 1000);
         document.cookie = "grade=" + gradeFilter + "; path=/; expires=" + date.toUTCString();
+        render();
     });
+    $("input").on("change", function () {
+        filter = $(this).val();
+        render();
+    });
+
+    function render() {
+        $(".book").remove();
+        var filteredBooks = books.filter(function (b) {
+            return b.grade == gradeFilter && b.name.indexOf(filter) != -1;
+        });
+        for (var i = 0; i < filteredBooks.length; i++) {
+            $(".content").append($('  <div class="book col-xs-3 done"><img src="imgs/' + filteredBooks[i].pik + '.jpg"><div class="check"></div></div>'));
+        }
+    }
 });

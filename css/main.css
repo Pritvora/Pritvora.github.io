@@ -42,3 +42,18 @@ input[type=text]:focus {
 .book img {
     width: 100%;
 }
+
+.book.done img {
+    filter: grayscale(80%);
+}
+
+.check {
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    height: 100%;
+    left: 0;
+    width: 100%;
+    background-image: url(imgs/checkmark.png);
+    background-position: center center;
+}
