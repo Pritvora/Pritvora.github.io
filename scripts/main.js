@@ -1,9 +1,3 @@
-function getCookie(name) {
-    var matches = document.cookie.match(new RegExp(
-        "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
-    ));
-    return matches ? decodeURIComponent(matches[1]) : undefined;
-}
 $(document).ready(function () {
     var books = [{
         name: "aaaaaaaaaaaaa",
@@ -11,19 +5,30 @@ $(document).ready(function () {
         grade: 2
     }];
     var filter = "";
-    var gradeFilter = getCookie("grade") || 2;
+    var gradeFilter = $.cookie("grade") || 2;
     render();
     $(".sclass[data-grade='" + gradeFilter + "']").addClass("selected");
     $(".sclass").click(function () {
         gradeFilter = $(this).data("grade");
         $(".selected.sclass").removeClass("selected");
         $(this).addClass("selected");
-        var date = new Date(new Date().getTime() + 60 * 1000);
-        document.cookie = "grade=" + gradeFilter + "; path=/; expires=" + date.toUTCString();
+        $.cookie("grade", gradeFilter, {
+            expires: 365
+        });
         render();
     });
     $("input").on("change", function () {
         filter = $(this).val();
+        render();
+    });
+    $(".book").click(function () {
+        if ($(this).hasClass("done")) {
+            $.cookie($(this).data("name"), null);
+        } else {
+            $.cookie($(this).data("name"), 1, {
+                expires: 365
+            });
+        }
         render();
     });
 
@@ -33,7 +38,12 @@ $(document).ready(function () {
             return b.grade == gradeFilter && b.name.indexOf(filter) != -1;
         });
         for (var i = 0; i < filteredBooks.length; i++) {
-            $(".content").append($('  <div class="book col-xs-3 done"><img src="imgs/' + filteredBooks[i].pik + '.jpg"><div class="check"></div></div>'));
+            if ($.cookie(filteredBooks[i].name)) {
+                $(".content").append($('<div class="book col-xs-3 done" data-name="' + filteredBooks[i].name + '"><img src="imgs/' + filteredBooks[i].pik + '.jpg"><div class="check"></div></div>'));
+            } else {
+                $(".content").append($('<div class="book col-xs-3" data-name="' + filteredBooks[i].name + '"><img src="imgs/' + filteredBooks[i].pik + '.jpg"></div>'));
+            }
         }
     }
+
 });

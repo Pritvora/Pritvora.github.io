@@ -50,10 +50,12 @@ input[type=text]:focus {
 .check {
     position: absolute;
     z-index: 2;
-    top: 0;
-    height: 100%;
-    left: 0;
-    width: 100%;
-    background-image: url(imgs/checkmark.png);
+    height: 80%;
+    top: 10%;
+    left: 10%;
+    width: 80%;
+    background-image: url(../imgs/checkmark.png);
     background-position: center center;
+    background-size: cover;
+    background-size: 100%;
 }
