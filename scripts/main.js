@@ -45,7 +45,7 @@ $(document).ready(function () {
 
 
     function render() {
-        $(".book").remove();
+        $(".bookrow").remove();
         var filteredBooks = books.filter(function (b) {
             return b.grade == gradeFilter && b.name.indexOf(filter) != -1;
         });
@@ -53,7 +53,7 @@ $(document).ready(function () {
             if (i % 4 == 0 || i === filteredBooks.length - 1) {
                 if (i > 0)
                     $('.content').append(div);
-                div = $('<div class="row"></div>');
+                div = $('<div class="row bookrow"></div>');
             }
             if ($.cookie(filteredBooks[i].name)) {
                 div.append($('<div class="book col-xs-3 done" data-name="' + filteredBooks[i].name + '"><img src="imgs/' + filteredBooks[i].pik + '.jpg"><div class="check"></div></div>'));
