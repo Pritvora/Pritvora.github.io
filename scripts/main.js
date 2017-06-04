@@ -1,12 +1,29 @@
 $(document).ready(function () {
     var books = [{
-        name: "aaaaaaaaaaaaa",
-        pik: "golden",
-        grade: 2
+            name: "aaaaaaaaaaaaa",
+            pik: "golden",
+            grade: 2
     }, {
-        name: "dfa",
-        pik: "golden",
-        grade: 3
+            name: "Царевна Лягушка",
+            pik: "ЦарЛяг",
+            grade: 2
+    }
+    , {
+            name: "Винни-Пух",
+            pik: "Винни-Пух",
+            grade: 2
+    }, {
+            name: "Приключения Незнайки ",
+            pik: "Незнайка",
+            grade: 2
+    }, {
+            name: "Дикие Лебеди",
+            pik: "Лебеди",
+            grade: 2
+    }, {
+            name: "Приключения Буратино",
+            pik: "Буратино",
+            grade: 2
     }];
     var filter = "";
     var gradeFilter = $.cookie("grade") || 2;
