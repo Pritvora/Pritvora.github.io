@@ -50,13 +50,17 @@ $(document).ready(function () {
             return b.grade == gradeFilter && b.name.indexOf(filter) != -1;
         });
         for (var i = 0; i < filteredBooks.length; i++) {
-
-            if ($.cookie(filteredBooks[i].name)) {
-
-                $(".content").append($('<div class="book col-xs-3 done" data-name="' + filteredBooks[i].name + '"><img src="imgs/' + filteredBooks[i].pik + '.jpg"><div class="check"></div></div>'));
-            } else {
-                $(".content").append($('<div class="book col-xs-3" data-name="' + filteredBooks[i].name + '"><img src="imgs/' + filteredBooks[i].pik + '.jpg"></div>'));
+            if (i % 4 == 0 || i === filteredBooks.length - 1) {
+                if (i > 0)
+                    $('.content').append(div);
+                div = $('<div class="row"></div>');
             }
+            if ($.cookie(filteredBooks[i].name)) {
+                div.append($('<div class="book col-xs-3 done" data-name="' + filteredBooks[i].name + '"><img src="imgs/' + filteredBooks[i].pik + '.jpg"><div class="check"></div></div>'));
+            } else {
+                div.append($('<div class="book col-xs-3" data-name="' + filteredBooks[i].name + '"><img src="imgs/' + filteredBooks[i].pik + '.jpg"></div>'));
+            }
+
         }
         $(".book").click(function () {
 
