@@ -1,7 +1,7 @@
 $(document).ready(function () {
     var books = [{
-            name: "aaaaaaaaaaaaa",
-            pik: "golden",
+            name: "Летучий корабль",
+            pik: "Корабль",
             grade: 2
     }, {
             name: "Царевна Лягушка",
@@ -23,6 +23,42 @@ $(document).ready(function () {
     }, {
             name: "Приключения Буратино",
             pik: "Буратино",
+            grade: 2
+    }, {
+            name: "Пеппи длинный чулок",
+            pik: "Пеппи",
+            grade: 2
+    }, {
+            name: "Сказка о золотом петушке",
+            pik: "Петушок",
+            grade: 2
+    }, {
+            name: "Русалочка",
+            pik: "Русалочка",
+            grade: 2
+    }, {
+            name: "Синяя Борода",
+            pik: "Синяя Борода",
+            grade: 2
+    }, {
+            name: "Старик Хоттабыч",
+            pik: "Старик",
+            grade: 2
+    }, {
+            name: "Королевство кривых зеркал",
+            pik: "КорКривЗеркал",
+            grade: 2
+    }, {
+            name: "Горячий камень",
+            pik: "ГорКам",
+            grade: 2
+    }, {
+            name: "Марья Моревна",
+            pik: "Марья",
+            grade: 2
+    }, {
+            name: "Королевство кривых зеркал",
+            pik: "КорКривЗеркал",
             grade: 2
     }];
     var filter = "";
@@ -49,18 +85,19 @@ $(document).ready(function () {
         var filteredBooks = books.filter(function (b) {
             return b.grade == gradeFilter && b.name.indexOf(filter) != -1;
         });
-        for (var i = 0; i < filteredBooks.length; i++) {
-            if (i % 4 == 0 || i === filteredBooks.length - 1) {
-                if (i > 0)
-                    $('.content').append(div);
-                div = $('<div class="row bookrow"></div>');
+        for (var i = 0; i <= Math.floor(filteredBooks.length / 4); i++) {
+            var div = $('<div class="row bookrow"></div>');
+            for (var j = 0; j < 4; j++) {
+                if (i * 4 + j >= filteredBooks.length)
+                    break;
+                var book = filteredBooks[i * 4 + j];
+                if ($.cookie(filteredBooks[i].name)) {
+                    div.append($('<div class="book col-xs-3 done" data-name="' + book.name + '"><img src="imgs/' + book.grade + "/" + book.pik + '.jpg"><div class="check"></div></div>'));
+                } else {
+                    div.append($('<div class="book col-xs-3" data-name="' + book.name + '"><img src="imgs/' + book.grade + "/" + book.pik + '.jpg"></div>'));
+                }
             }
-            if ($.cookie(filteredBooks[i].name)) {
-                div.append($('<div class="book col-xs-3 done" data-name="' + filteredBooks[i].name + '"><img src="imgs/' + filteredBooks[i].pik + '.jpg"><div class="check"></div></div>'));
-            } else {
-                div.append($('<div class="book col-xs-3" data-name="' + filteredBooks[i].name + '"><img src="imgs/' + filteredBooks[i].pik + '.jpg"></div>'));
-            }
-
+            $('.content').append(div);
         }
         $(".book").click(function () {
 
