@@ -91,7 +91,7 @@ $(document).ready(function () {
                 if (i * 4 + j >= filteredBooks.length)
                     break;
                 var book = filteredBooks[i * 4 + j];
-                if ($.cookie(filteredBooks[i].name)) {
+                if ($.cookie(book.name)) {
                     div.append($('<div class="book col-xs-3 done" data-name="' + book.name + '"><img src="imgs/' + book.grade + "/" + book.pik + '.jpg"><div class="check"></div></div>'));
                 } else {
                     div.append($('<div class="book col-xs-3" data-name="' + book.name + '"><img src="imgs/' + book.grade + "/" + book.pik + '.jpg"></div>'));
