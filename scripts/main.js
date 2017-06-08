@@ -655,7 +655,7 @@ $(document).ready(function () {
     function render() {
         $(".bookrow").remove();
         var filteredBooks = books.filter(function (b) {
-            return b.grade == gradeFilter && b.name.indexOf(filter) != -1;
+            return b.grade == gradeFilter && b.name.toLowerCase().indexOf(filter.toLowerCase()) != -1;
         });
         for (var i = 0; i <= Math.floor(filteredBooks.length / 4); i++) {
             var div = $('<div class="row bookrow"></div>');
