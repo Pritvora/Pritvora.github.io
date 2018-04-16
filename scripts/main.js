@@ -686,7 +686,7 @@ $(document).ready(function () {
             grade: 11
         }];
     var filter = "";
-    var gradeFilter = localStorage.getItem("grade") || 2;
+    var gradeFilter = localStorage.getItem("grade") || 0;
     render();
 
     $(".sclass[data-grade='" + gradeFilter + "']").addClass("selected");
