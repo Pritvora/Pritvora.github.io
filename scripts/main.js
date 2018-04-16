@@ -707,7 +707,7 @@ $(document).ready(function () {
 
     function render() {
         $(".bookrow").remove();
-        if (localStorage.getItem("grade")) {
+        if (!localStorage.getItem("grade")) {
             $('.content').append("<img src='imgs/mascot.png' class='mascot bookrow'></img>");
         } else {
             var filteredBooks = books.filter(function (b) {
