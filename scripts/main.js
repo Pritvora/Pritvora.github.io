@@ -695,7 +695,7 @@ $(document).ready(function () {
         gradeFilter = $(this).data("grade");
         $(".selected.sclass").removeClass("selected");
         $(this).addClass("selected");
-        localStorage.setItem("grade", parseInt(gradeFilter));
+        localStorage.setItem("grade", gradeFilter);
         render();
     });
 
@@ -707,7 +707,8 @@ $(document).ready(function () {
 
     function render() {
         $(".bookrow").remove();
-        if (!localStorage.getItem("grade")) {
+		
+        if (!localStorage.getItem("grade") || localStorage.getItem("grade") == "0") {
             $('.content').append("<img src='imgs/mascot.png' class='mascot bookrow'></img>");
         } else {
             var filteredBooks = books.filter(function (b) {
