@@ -695,7 +695,7 @@ $(document).ready(function () {
         gradeFilter = $(this).data("grade");
         $(".selected.sclass").removeClass("selected");
         $(this).addClass("selected");
-        localStorage.setItem("grade", gradeFilter);
+        localStorage.setItem("grade", parseInt(gradeFilter));
         render();
     });
 
