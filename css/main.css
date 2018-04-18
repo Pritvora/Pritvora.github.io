@@ -43,6 +43,7 @@ input[type=text]:focus {
 .book {
     margin: 10px 0  ;
     text-align: center;
+    cursor: pointer;
 }
 
 .book img {
